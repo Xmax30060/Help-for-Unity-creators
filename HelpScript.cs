@@ -1,3 +1,7 @@
+// Pour les fonctions d'animation, je me suis basé sur la vidéo du YouTuber Small Hedge Games : https://www.youtube.com/watch?v=I3_i-x9nCjs&t=417s
+// For animation functions, I drew inspiration from the video by YouTuber Small Hedge Games: https://www.youtube.com/watch?v=I3_i-x9nCjs&t=417s
+
+
 // Utilisation de l'espace de noms UnityEngine
 // Using the UnityEngine namespace
 using UnityEngine;
