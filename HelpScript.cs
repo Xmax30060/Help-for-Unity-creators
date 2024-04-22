@@ -81,5 +81,46 @@ namespace Help
                 animator.CrossFade(animation, crossfade);
             }
         }
-    }
+
+        //Français :
+        // Cette fonction recherche récursivement un enfant (ou un descendant) du Transform parent
+        // dont le nom correspond au paramètre 'name'.
+        // Si l'enfant est trouvé, il est renvoyé ; sinon, la recherche continue dans les enfants de l'enfant.
+        //English: 
+        // This function recursively searches for a child (or descendant) of the parent Transform
+        // whose name matches the 'name' parameter.
+        // If the child is found, it is returned; otherwise, the search continues in the child's children.
+        public static Transform FindDeepChild(this Transform parent, string name)
+        {
+            foreach (Transform child in parent)
+            {
+                if (child.name == name)
+                    return child;
+                var result = child.FindDeepChild(name);
+                if (result != null)
+                    return result;
+            }
+            return null;
+        }
+
+        // Français :
+        // Cette fonction définit récursivement la couche (layer) d'un GameObject et de tous ses enfants.
+        // Elle prend en paramètre un GameObject 'obj' et une chaîne de caractères 'newLayerName' représentant le nom de la nouvelle couche.
+        // English:
+        // This function recursively sets the layer of a GameObject and all its children.
+        // It takes a GameObject 'obj' and a string 'newLayerName' representing the name of the new layer.
+        public static void SetLayerRecursively(GameObject obj, string newLayerName)
+        {
+            int newLayer = LayerMask.NameToLayer(newLayerName);
+            if (null == obj)
+                return;
+            obj.layer = newLayer;
+            foreach (Transform child in obj.transform)
+            {
+                if (null == child)
+                    continue;
+                SetLayerRecursively(child.gameObject, newLayerName);
+            }
+        }
+    }    
 }
